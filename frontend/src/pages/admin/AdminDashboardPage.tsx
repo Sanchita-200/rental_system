@@ -16,7 +16,6 @@ import { rentalsApi } from '../../api/rentals.api';
 import { catalogApi } from '../../api/catalog.api';
 import { settingsApi } from '../../api/settings.api';
 import type { Product } from '../../types';
-import { IoTFleetMap } from '../../components/features/operations/IoTFleetMap';
 
 // Orders schema matching Excalidraw Wireframe diagram
 interface RentalOrderWireframe {
@@ -302,7 +301,6 @@ export const AdminDashboardPage: React.FC = () => {
   const [adminCompany, setAdminCompany] = useState('RentFlow AI Corporate');
   const [adminGst, setAdminGst] = useState('27AAAAA0000A1Z5');
   const [adminAddress, setAddress] = useState('Tech Park Cyber City, Suite 402, Mumbai');
-  const [adminRoleSelect, setAdminRoleSelect] = useState<'Admin' | 'Vendor' | 'Customer'>('Admin');
   const [settingSubTab, setSettingSubTab] = useState<'work' | 'security'>('work');
   const [savedSettingsSuccess, setSavedSettingsSuccess] = useState(false);
 
@@ -1514,11 +1512,8 @@ export const AdminDashboardPage: React.FC = () => {
                 ))}
               </div>
 
-              {/* IoT Live Fleet Map & Communication Hub Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="lg:col-span-2">
-                  <IoTFleetMap />
-                </div>
+              {/* Communication Hub */}
+              <div className="grid grid-cols-1 gap-6">
                 {/* Reminders Log Sidebar */}
                 <div className="glass-panel p-5 rounded-3xl border border-green-500/20 bg-[#0A1813]/90 flex flex-col justify-between shadow-2xl h-[420px]">
                   <div className="border-b border-green-500/15 pb-3">
@@ -1898,21 +1893,7 @@ export const AdminDashboardPage: React.FC = () => {
 
                 {settingSubTab === 'work' && (
                   <div className="p-4 rounded-2xl bg-[#07140F] border border-green-500/20 space-y-3">
-                    <span className="text-xs font-bold text-white block">Role Selector:</span>
-                    <div className="flex items-center gap-6 text-xs text-slate-300 font-semibold">
-                      {(['Admin', 'Vendor', 'Customer'] as const).map((r) => (
-                        <label key={r} className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="roleRadio"
-                            checked={adminRoleSelect === r}
-                            onChange={() => setAdminRoleSelect(r)}
-                            className="accent-emerald-500 w-4 h-4"
-                          />
-                          <span>{r}</span>
-                        </label>
-                      ))}
-                    </div>
+                    <span className="text-xs text-slate-400">No additional work information available.</span>
                   </div>
                 )}
 
